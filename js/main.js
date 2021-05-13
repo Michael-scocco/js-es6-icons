@@ -109,12 +109,26 @@ const listaAnimali = [
 		family: 'fas'
 	}
 ];
+// step 1
+// mostriamo in pagina tutte le icone disponibili come da layout.
+// step 2
+// Coloriamo le icone per tipo
 
-listaAnimali.forEach((animale) => {
+listaAnimali.forEach((icona) => {
     document.getElementById('container').insertAdjacentHTML('beforeend',`
-    <div>
-        <i class="${animale.name}${animale.prefix}${animale.type}${animale.family} "</i>
-
+    <div class="icone">
+        ${icona.name}
+        <i class="${icona.family} ${icona.prefix}${icona.name}"></i>
     </div>
+    <div class="animal">
+        ${icona.type}
+    </div>
+    <div class="vegetable">
+        ${icona.type}
+    </div>
+    <div class="user">
+        ${icona.type}
+    </div>
+
     `)
 });
