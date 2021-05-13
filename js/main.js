@@ -111,24 +111,51 @@ const listaAnimali = [
 ];
 // step 1
 // mostriamo in pagina tutte le icone disponibili come da layout.
+
 // step 2
 // Coloriamo le icone per tipo
-
+// const animal = [], vegetable = [], user = [], all = [];
+let color;
 listaAnimali.forEach((icona) => {
+    if (icona.type == 'animal') {
+         colore = 'blue';
+    }else if (icona.type == 'vegetable') {
+         colore = 'orange';
+    }else {
+         colore = 'purple';
+    }
     document.getElementById('container').insertAdjacentHTML('beforeend',`
-    <div class="icone">
+    <div class="icone animal vegetable user">
         ${icona.name}
-        <i class="${icona.family} ${icona.prefix}${icona.name}"></i>
-    </div>
-    <div class="animal">
-        ${icona.type}
-    </div>
-    <div class="vegetable">
-        ${icona.type}
-    </div>
-    <div class="user">
-        ${icona.type}
+        <i class="${icona.family} ${icona.prefix}${icona.name}" style="color: ${colore}"></i>
     </div>
 
+    `)
+});
+
+// Milestone 3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
+document.getElementById('tipologia').addEventListener('onchange', function () {
+
+const selezionaTutti = colore(gatto=>{
+    return colore === 'black'
+})
+
+const selezionaAnimali = colore(gatto=>{
+    return colore === 'blue'
+})
+const selezionaVegetali = colore(gatto=>{
+    return colore === 'orange'
+})
+const selezionaUser = colore(gatto=>{
+    return colore === 'purple'
+})
+
+document.getElementById('tipologia').insertAdjacentHTML('beforeend',`
+    <div class="selezione">
+        <option value="All">All</option>
+        <option value="animal">animal</option>
+        <option value="vegetable">vegetable</option>
+        <option value="user">user</option>
+    </div>
     `)
 });
