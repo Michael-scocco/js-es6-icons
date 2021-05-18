@@ -1,8 +1,8 @@
+
 /*
 Milestone 1:
 Partendo dalla seguente struttura dati ,
 mostriamo in pagina tutte le icone disponibili come da layout.
-
 Milestone 2 Coloriamo le icone per tipo
 Milestone 3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
 Usate questa struttura dati per le icone:
@@ -116,6 +116,7 @@ const listaAnimali = [
 // Coloriamo le icone per tipo
 // const animal = [], vegetable = [], user = [], all = [];
 let color;
+let tipologia = [];
 listaAnimali.forEach((icona) => {
     if (icona.type == 'animal') {
          colore = 'blue';
@@ -125,37 +126,61 @@ listaAnimali.forEach((icona) => {
          colore = 'purple';
     }
     document.getElementById('container').insertAdjacentHTML('beforeend',`
-    <div class="icone animal vegetable user">
+    <div class="icone provola" data-type="${icona.type}">
         ${icona.name}
         <i class="${icona.family} ${icona.prefix}${icona.name}" style="color: ${colore}"></i>
     </div>
-
     `)
+
+	if(!tipologia.includes(icona.type)){
+		tipologia.push(icona.type)
+	}
 });
+
+tipologia.forEach(element => {
+	console.log(document.getElementById('tipologia'));
+	document.getElementById('tipologia').insertAdjacentHTML('beforeend',
+	
+	`<option value='${element}'>${element} </option>`
+	
+	);
+
+});
+
+
+
+
+let provolaEl= document.querySelectorAll('.provola');
+
+
+	let selection = document.getElementById('tipologia');
+	console.log(selection);
+
 
 // Milestone 3 Creiamo una select con i tipi di icone e usiamola per filtrare le icone
-document.getElementById('tipologia').addEventListener('onchange', function () {
+selection.addEventListener('change', ()=>{
 
-const selezionaTutti = colore(gatto=>{
-    return colore === 'black'
-})
+	provolaEl.forEach(el=>{
+		if(selection.value=='all') {
+			el.style.display ="block";
+			console.log("mostra tutto");
+			
+		} else if(el.getAttribute('data.type')==selection.value){
+			el.style.display="block";
+			console.log("visibile");
+			
+		}else{
+			el.style.display="none";
+			console.log("non-visibile");
 
-const selezionaAnimali = colore(gatto=>{
-    return colore === 'blue'
-})
-const selezionaVegetali = colore(gatto=>{
-    return colore === 'orange'
-})
-const selezionaUser = colore(gatto=>{
-    return colore === 'purple'
-})
+		}
 
-document.getElementById('tipologia').insertAdjacentHTML('beforeend',`
-    <div class="selezione">
-        <option value="All">All</option>
-        <option value="animal">animal</option>
-        <option value="vegetable">vegetable</option>
-        <option value="user">user</option>
-    </div>
-    `)
+
+	});
+
+
+
+
 });
+
+
